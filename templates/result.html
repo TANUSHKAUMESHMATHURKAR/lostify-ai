@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section class="section">
+  <div class="card">
+    <h3>Status: {{ type }}</h3>
+    <p>AI Match: <b>{{ match }}%</b></p>
+
+    <div class="map">
+      <iframe src="https://maps.google.com/maps?q={{ location }}&output=embed"></iframe>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

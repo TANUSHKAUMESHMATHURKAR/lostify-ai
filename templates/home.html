@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section class="reviews-section">
+  <h1>User Reviews</h1>
+
+  <div class="reviews-grid">
+    {% for r in reviews %}
+    <div class="review-card">
+      <div class="stars">⭐ {{ r.rating }}/5</div>
+      <h3>{{ r.name }}</h3>
+      <p>{{ r.text }}</p>
+    </div>
+    {% endfor %}
+  </div>
+
+  <h2 class="count">500+</h2>
+  <p>Items Recovered</p>
+</section>
+
+<section class="map-section">
+  <h2>📍 Live User Location (Google Maps)</h2>
+
+  <iframe
+    id="liveMap"
+    width="100%"
+    height="350"
+    style="border-radius:16px;border:0;"
+    loading="lazy">
+  </iframe>
+
+  <button onclick="openLiveLocation()" class="btn-glow">
+    📍 Show My Live Location
+  </button>
+</section>
+
+<script>
+function openLiveLocation(){
+  if(navigator.geolocation){
+    navigator.geolocation.getCurrentPosition(pos=>{
+      const lat = pos.coords.latitude;
+      const lng = pos.coords.longitude;
+      document.getElementById("liveMap").src =
+        `https://www.google.com/maps?q=${lat},${lng}&output=embed`;
+    });
+  } else {
+    alert("Geolocation not supported");
+  }
+}
+</script>
+
+{% endblock %}

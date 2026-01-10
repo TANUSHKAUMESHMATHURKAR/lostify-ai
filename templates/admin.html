@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="feed-section">
+    <h2>Admin Dashboard</h2>
+    <div class="feed-container">
+        {% for report in reports %}
+        <div class="feed-card admin">
+            <img src="{{ report[4] }}" alt="{{ report[2] }}">
+            <h3>{{ report[2] }}</h3>
+            <p><strong>Location:</strong> {{ report[3] }}</p>
+            <p><strong>User:</strong> {{ report[1] }}</p>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}

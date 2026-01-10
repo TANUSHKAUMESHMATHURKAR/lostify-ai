@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section class="feed-section">
+
+  <div class="stats-row">
+    <div class="stat-box">
+      <h2>{{ reports | selectattr("type","equalto","lost") | list | length }}</h2>
+      <p>Lost Items</p>
+    </div>
+    <div class="stat-box">
+      <h2>{{ reports | selectattr("type","equalto","found") | list | length }}</h2>
+      <p>Found Items</p>
+    </div>
+    <div class="stat-box">
+      <h2>92%</h2>
+      <p>AI Match</p>
+    </div>
+  </div>
+
+  <h2 class="section-title">Lost & Found Feed</h2>
+
+  <div class="feed-container">
+    {% for r in reports %}
+    <div class="feed-card">
+
+      <span class="badge-verified">✔ Verified</span>
+
+      <h3>{{ r.item }}</h3>
+      <p>📍 {{ r.location }}</p>
+      <p>Status: {{ r.type }}</p>
+      <p>Match: {{ r.match }}</p>
+
+      {% if r.image %}
+        <img src="/{{ r.image }}" class="feed-img">
+      {% endif %}
+
+      <iframe
+        src="https://www.google.com/maps?q={{ r.location | urlencode }}&output=embed"
+        width="100%" height="200"
+        style="border-radius:12px;border:0">
+      </iframe>
+
+      {% if r.match != "—" %}
+      <div class="match-bar">
+        <div class="match-fill" style="width: {{ r.match }};">
+          {{ r.match }}
+        </div>
+      </div>
+      {% endif %}
+
+    </div>
+    {% endfor %}
+  </div>
+
+  <div class="card tech-card">
+    <h3>⚙️ Technology Stack</h3>
+    <ul>
+      <li>Google Maps API – location & visualization</li>
+      <li>Geolocation API – live tracking</li>
+      <li>Google Gemini (Planned) – AI matching</li>
+      <li>Google Cloud Ready – scalable deployment</li>
+    </ul>
+  </div>
+
+</section>
+
+{% endblock %}

@@ -1,0 +1,126 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<!-- HERO -->
+<section class="hero">
+  <h1>
+    Welcome to <span id="typed-text"></span>
+  </h1>
+  <p>Find your lost items faster with AI + Live Location</p>
+
+  {% if 'user' in session %}
+    <a href="{{ url_for('report') }}" class="btn-glow">Report Lost Item</a>
+  {% else %}
+    <a href="{{ url_for('signup') }}" class="btn-glow">Get Started</a>
+  {% endif %}
+</section>
+
+<!-- STATS -->
+<section class="stats">
+  <div class="stat">
+    <h2 data-target="1240">0</h2>
+    <p>Items Recovered</p>
+  </div>
+  <div class="stat">
+    <h2 data-target="3200">0</h2>
+    <p>Reports Filed</p>
+  </div>
+  <div class="stat">
+    <h2 data-target="92">0</h2>
+    <p>% Match Accuracy</p>
+  </div>
+</section>
+
+<!-- MAP -->
+<section class="map-section">
+  <h2>📍 Live Lost & Found Map</h2>
+  <iframe
+    src="https://www.google.com/maps?q=india&output=embed"
+    loading="lazy">
+  </iframe>
+</section>
+<!-- REVIEWS -->
+<section class="reviews">
+  <h2>What Users Say 💬</h2>
+
+  <!-- EXISTING REVIEWS -->
+  <div class="review-card">
+    <div class="review-header">
+      <img src="{{ url_for('static', filename='images/logo.png') }}" class="review-logo">
+      <strong>Ankit Sharma</strong>
+    </div>
+    <p class="stars">⭐⭐⭐⭐⭐</p>
+    <p>"Found my phone within 1 hour. Amazing platform!"</p>
+  </div>
+
+  <div class="review-card">
+    <div class="review-header">
+      <img src="{{ url_for('static', filename='images/logo.png') }}" class="review-logo">
+      <strong>Neha Verma</strong>
+    </div>
+    <p class="stars">⭐⭐⭐⭐</p>
+    <p>"UI is beautiful and AI matching is impressive."</p>
+  </div>
+
+  <div class="stats-count">
+  <span class="big-number">0+</span>
+  <p>Items Recovered</p>
+</div>
+
+
+  <!-- ADD REVIEW BUTTON -->
+  {% if 'user' in session %}
+    <button class="btn-glow" onclick="openReview()">➕ Add Your Review</button>
+  {% else %}
+    <p class="login-note">Login to add your review</p>
+  {% endif %}
+</section>
+
+<!-- REVIEW MODAL -->
+<div class="review-modal" id="reviewModal">
+  <div class="review-box">
+    <h3>Give Your Review ⭐</h3>
+
+    <form method="POST" action="/add-review">
+      <input type="text" name="name" placeholder="Your Name" required>
+
+      <select name="rating" required>
+        <option value="">Rate Us</option>
+        <option value="5">⭐⭐⭐⭐⭐</option>
+        <option value="4">⭐⭐⭐⭐</option>
+        <option value="3">⭐⭐⭐</option>
+        <option value="2">⭐⭐</option>
+        <option value="1">⭐</option>
+      </select>
+
+      <textarea name="review" placeholder="Write your review..." required></textarea>
+
+      <button class="btn-glow" type="submit">Submit Review</button>
+      <button type="button" class="btn-outline" onclick="closeReview()">Cancel</button>
+    </form>
+  </div>
+</div>
+
+
+
+<!-- REVIEWS -->
+<section class="reviews">
+  <h2>User Reviews</h2>
+
+  <div class="review active">🔥 “Lostify AI helped me recover my lost wallet within a day. The live location and feed system is really helpful. Great initiative and very smooth experience!” – Ankit</div>
+  <div class="review">⭐ “Very clean UI and easy to use platform. The verified badge feature builds trust. Perfect solution for lost and found items. Loved it! – Neha</div>
+  <div class="review">🚀 “Simple, fast, and effective. The reporting process is straightforward and the map integration is a big plus. Highly recommended.” – Jury</div>
+</section>
+
+<!-- JS -->
+<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+<script>
+  new Typed('#typed-text', {
+    strings: ['Lostify AI', 'AI Lost & Found', 'Fast. Smart. Secure.'],
+    typeSpeed: 60,
+    backSpeed: 40,
+    loop: true
+  });
+</script>
+
+{% endblock %}

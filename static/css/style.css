@@ -1,0 +1,508 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap');
+
+/* ================= ROOT ================= */
+:root{
+  --bg:#020617;
+  --glass:rgba(2,6,23,.7);
+  --border:rgba(255,255,255,.08);
+  --neon:#38bdf8;
+  --purple:#a855f7;
+  --pink:#ec4899;
+  --text:#e5e7eb;
+  --muted:#94a3b8;
+}
+
+*{ box-sizing:border-box; }
+
+/* ================= BODY ================= */
+body{
+  margin:0;
+  font-family:'Poppins',sans-serif;
+  background:
+    radial-gradient(circle at 20% 10%,#1e293b 0%,transparent 40%),
+    radial-gradient(circle at 80% 80%,#020617 0%,#020617 60%);
+  color:var(--text);
+}
+
+/* ================= NAV ================= */
+nav{
+  position:sticky;
+  top:0;
+  z-index:100;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:18px 60px;
+  background:rgba(2,6,23,.85);
+  backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
+}
+
+nav h2{
+  font-weight:800;
+  background:linear-gradient(90deg,var(--neon),var(--purple));
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+nav a{
+  color:var(--muted);
+  margin-left:22px;
+  text-decoration:none;
+  font-weight:500;
+  transition:.3s;
+}
+nav a:hover{
+  color:var(--neon);
+  text-shadow:0 0 10px var(--neon);
+}
+
+/* ================= BUTTON (COMPACT) ================= */
+button{
+  width:100%;
+  padding:12px;              /* slim */
+  border:none;
+  border-radius:14px;
+  cursor:pointer;
+  font-weight:700;
+  font-size:15px;
+  background:linear-gradient(135deg,var(--neon),var(--purple));
+  color:white;
+  box-shadow:0 10px 35px rgba(56,189,248,.35);
+  transition:.3s;
+}
+button:hover{
+  transform:translateY(-2px) scale(1.03);
+  box-shadow:0 0 30px var(--neon),0 0 60px var(--purple);
+}
+
+/* ================= INPUTS (COMPACT + CENTER FEEL) ================= */
+input,
+select,
+textarea{
+  width:100%;
+  padding:10px 14px;     /* balanced */
+  margin:10px 0;
+  border-radius:12px;
+  border:1px solid var(--border);
+  background:#020617;
+  color:white;
+  font-size:14px;
+  line-height:1.2;       /* 👈 stretch fix */
+}
+
+
+textarea{
+  height:auto;
+  min-height:90px;
+}
+
+input::placeholder,
+textarea::placeholder{
+  font-size:12px;        
+  line-height:1;
+  color:var(--muted);
+}
+
+
+input:focus,
+select:focus,
+textarea:focus{
+  outline:none;
+  border-color:var(--neon);
+  box-shadow:0 0 0 3px rgba(56,189,248,.25);
+}
+
+/* FILE INPUT FIX */
+input[type="file"]{
+  height:auto;
+  padding:6px;
+  font-size:13px;
+}
+
+/* ================= FORM WIDTH CONTROL ================= */
+.report-form,
+.login-form,
+.signup-form,
+.review-form{
+  max-width:520px;
+  margin:40px auto;
+}
+
+/* ================= HOME – REVIEWS ================= */
+.reviews-section{
+  padding:120px 20px;
+  text-align:center;
+}
+
+.reviews-section h1{
+  font-size:42px;
+  margin-bottom:40px;
+}
+
+.reviews-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:30px;
+  max-width:1100px;
+  margin:auto;
+}
+
+.review-card{
+  background:var(--glass);
+  border-radius:20px;
+  padding:25px;
+  box-shadow:0 20px 60px rgba(0,0,0,.6);
+  transition:.4s;
+}
+.review-card:hover{
+  transform:translateY(-8px);
+  box-shadow:0 0 40px var(--neon);
+}
+
+.stars{ color:#facc15; }
+
+.count{
+  font-size:64px;
+  color:var(--neon);
+  margin-top:50px;
+}
+
+/* ================= MAP ================= */
+.map-section{
+  padding:100px 20px;
+  text-align:center;
+}
+#map{
+  height:380px;
+  border-radius:20px;
+  margin-top:25px;
+  box-shadow:0 0 40px rgba(56,189,248,.5);
+}
+
+/* ================= FEED ================= */
+.feed-section{
+  padding:80px 40px;
+  text-align:center;
+}
+
+.section-title{
+  font-size:32px;
+  margin-bottom:40px;
+  color:var(--neon);
+}
+
+.stats-row{
+  display:flex;
+  justify-content:center;
+  gap:30px;
+  margin-bottom:40px;
+}
+
+.stat-box{
+  background:#020617;
+  padding:20px 35px;
+  border-radius:18px;
+  box-shadow:0 0 25px rgba(56,189,248,.4);
+}
+
+.stat-box h2{
+  font-size:36px;
+  color:var(--neon);
+}
+
+.feed-container{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:30px;
+  max-width:1100px;
+  margin:auto;
+}
+
+.feed-card{
+  background:var(--glass);
+  border-radius:22px;
+  padding:18px;
+  box-shadow:0 30px 80px rgba(0,0,0,.6);
+  transition:.4s;
+}
+.feed-card:hover{
+  transform:translateY(-10px);
+  box-shadow:0 0 30px var(--neon);
+}
+
+.feed-img{
+  width:100%;
+  height:180px;
+  object-fit:cover;
+  border-radius:16px;
+  margin-bottom:12px;
+}
+
+/* ================= STATUS ================= */
+.status{
+  display:inline-block;
+  padding:6px 14px;
+  border-radius:20px;
+  margin-top:10px;
+  font-size:13px;
+}
+.status.lost{
+  background:#7c2d12;
+  color:#fed7aa;
+}
+.status.found{
+  background:#14532d;
+  color:#bbf7d0;
+}
+
+/* ================= MATCH BAR ================= */
+.match-bar{
+  background:#020617;
+  height:14px;
+  border-radius:10px;
+  margin-top:12px;
+  overflow:hidden;
+}
+.match-fill{
+  height:100%;
+  background:linear-gradient(90deg,var(--neon),var(--purple));
+  text-align:center;
+  font-size:11px;
+  color:white;
+}
+
+/* ================= FOOTER ================= */
+footer{
+  text-align:center;
+  padding:20px;
+  margin-top:80px;
+  color:#64748b;
+  border-top:1px solid var(--border);
+}
+
+
+
+/* ================= LOGIN / SIGNUP FINAL FIX ================= */
+.auth-box {
+  padding: 32px; /* thoda compact feel */
+}
+
+.auth-box input,
+.auth-box select {
+  height: 36px !important;
+  padding: 4px 10px !important;
+  font-size: 14px !important;
+  line-height: 1 !important;
+}
+
+/* placeholder slim */
+.auth-box input::placeholder {
+  font-size: 12px;
+  line-height: 1;
+}
+
+
+
+
+/* 🔥 LOGIN / SIGNUP INPUT FINAL OVERRIDE 🔥 */
+.auth-box input {
+  height: 36px !important;
+  padding: 4px 10px !important;
+  font-size: 14px !important;
+  line-height: 1 !important;
+}
+
+/* placeholder aur slim */
+.auth-box input::placeholder {
+  font-size: 12px;
+  line-height: 1;
+}
+
+
+/* ================= AUTH BOX FINAL FIX ================= */
+.auth-box{
+  max-width: 420px !important;
+  width: 100% !important;
+  margin: 80px auto !important;
+  padding: 32px !important;
+}
+
+/* inputs NOT stretched */
+.auth-box input{
+  width: 100% !important;
+  height: 40px !important;
+  padding: 6px 12px !important;
+  font-size: 14px !important;
+  line-height: 1 !important;
+}
+
+/* placeholder slim */
+.auth-box input::placeholder{
+  font-size: 12px;
+  line-height: 1;
+}
+
+/* button same width as box */
+.auth-box button{
+  height: 44px;
+  font-size: 15px;
+}
+
+
+
+
+
+/* ===== AUTH BOX BORDER & GLOW ===== */
+.auth-box{
+  position: relative;
+  max-width: 420px;
+  margin: 80px auto;
+  padding: 32px;
+  border-radius: 22px;
+
+  /* glass look */
+  background: rgba(2,6,23,0.75);
+  backdrop-filter: blur(22px);
+
+  /* border */
+  border: 1px solid rgba(255,255,255,0.12);
+
+  /* soft base shadow */
+  box-shadow: 
+    0 25px 80px rgba(0,0,0,0.6),
+    inset 0 0 0 1px rgba(255,255,255,0.02);
+
+  transition: 0.4s ease;
+}
+
+/* ✨ HOVER GLOW */
+.auth-box:hover{
+  box-shadow:
+    0 0 25px rgba(56,189,248,0.6),
+    0 0 60px rgba(168,85,247,0.35),
+    0 40px 120px rgba(0,0,0,0.8);
+  transform: translateY(-4px);
+}
+
+
+
+
+
+/* ================= REPORT BOX (LIKE LOGIN) ================= */
+.report-box{
+  max-width: 520px;
+  margin: 80px auto;
+  padding: 32px;
+  border-radius: 22px;
+
+  background: rgba(2,6,23,0.75);
+  backdrop-filter: blur(22px);
+
+  border: 1px solid rgba(255,255,255,0.12);
+
+  box-shadow:
+    0 25px 80px rgba(0,0,0,0.6),
+    inset 0 0 0 1px rgba(255,255,255,0.02);
+
+  transition: .4s ease;
+}
+
+/* ✨ hover glow */
+.report-box:hover{
+  box-shadow:
+    0 0 25px rgba(56,189,248,0.6),
+    0 0 60px rgba(168,85,247,0.35),
+    0 40px 120px rgba(0,0,0,0.8);
+  transform: translateY(-4px);
+}
+
+/* inputs compact inside report */
+.report-box input,
+.report-box select{
+  height: 40px;
+  padding: 6px 12px;
+  font-size: 14px;
+}
+
+/* button aligned */
+.report-box button{
+  height: 44px;
+  margin-top: 12px;
+}
+
+
+/* ================= REPORT BOX (LOGIN STYLE) ================= */
+.report-box{
+  max-width: 520px;
+  margin: 80px auto;
+  padding: 32px;
+  border-radius: 22px;
+
+  background: rgba(2,6,23,0.75);
+  backdrop-filter: blur(22px);
+
+  border: 1px solid rgba(255,255,255,0.12);
+
+  box-shadow:
+    0 25px 80px rgba(0,0,0,0.6),
+    inset 0 0 0 1px rgba(255,255,255,0.02);
+
+  transition: 0.4s ease;
+}
+
+/* ✨ hover glow */
+.report-box:hover{
+  transform: translateY(-4px);
+  box-shadow:
+    0 0 25px rgba(56,189,248,0.6),
+    0 0 60px rgba(168,85,247,0.35),
+    0 40px 120px rgba(0,0,0,0.8);
+}
+
+/* title center */
+.report-box h2{
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+/* inputs compact (no stretch) */
+.report-box input,
+.report-box select{
+  height: 40px;
+  padding: 6px 12px;
+  font-size: 14px;
+}
+
+/* file input fix */
+.report-box input[type="file"]{
+  height: auto;
+  padding: 6px;
+}
+
+
+
+/* ===== VERIFIED BADGE ===== */
+.verified-badge{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  margin-left:10px;
+  padding:4px 10px;
+  font-size:12px;
+  font-weight:600;
+  border-radius:14px;
+
+  color:#22c55e;
+  background:rgba(34,197,94,0.12);
+  border:1px solid rgba(34,197,94,0.4);
+
+  box-shadow:0 0 10px rgba(34,197,94,0.6);
+  animation: pulseGlow 2s infinite;
+}
+
+@keyframes pulseGlow{
+  0%{ box-shadow:0 0 8px rgba(34,197,94,0.4); }
+  50%{ box-shadow:0 0 16px rgba(34,197,94,0.9); }
+  100%{ box-shadow:0 0 8px rgba(34,197,94,0.4); }
+}

@@ -1,0 +1,28 @@
+
+
+
+
+{% extends "base.html" %}
+{% block content %}
+
+<div class="auth-box report-form">
+  <h2>📌 Report Item</h2>
+
+  <form method="POST" enctype="multipart/form-data">
+    <input name="item_name" placeholder="Item name" required>
+    <input name="location" placeholder="Location" required>
+
+    <select name="type" required>
+      <option value="">Select Type</option>
+      <option value="lost">Lost</option>
+      <option value="found">Found</option>
+    </select>
+
+    <input type="file" name="image" accept="image/*">
+
+    <button onclick="launchConfetti()">Submit Report</button>
+  </form>
+</div>
+
+{% endblock %}
+
