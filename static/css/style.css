@@ -506,3 +506,21 @@ footer{
   50%{ box-shadow:0 0 16px rgba(34,197,94,0.9); }
   100%{ box-shadow:0 0 8px rgba(34,197,94,0.4); }
 }
+
+
+/* 🔥 ABSOLUTE FINAL INPUT FIX 🔥 */
+.auth-box {
+  position: relative;
+  z-index: 1;
+}
+
+.auth-box * {
+  pointer-events: auto;
+}
+
+.auth-box input,
+.auth-box button {
+  position: relative;
+  z-index: 9999;
+  pointer-events: auto;
+}
