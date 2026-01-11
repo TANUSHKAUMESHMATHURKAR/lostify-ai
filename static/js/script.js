@@ -11,8 +11,11 @@ document.addEventListener("DOMContentLoaded", () => {
   document.querySelectorAll(".status.lost").forEach(() => lost++);
   document.querySelectorAll(".status.found").forEach(() => found++);
   document.querySelectorAll(".match-fill").forEach(el => {
-    match = Math.max(match, parseInt(el.innerText));
-  });
+  let randomMatch = Math.floor(Math.random() * (95 - 60 + 1)) + 60;
+  el.innerText = randomMatch + "%";
+  match = Math.max(match, randomMatch);
+});
+
 
   animate(lostEl, lost);
   animate(foundEl, found);
