@@ -22,6 +22,7 @@ app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
 USERS = {}
 REPORTS = []
 
+
 REVIEWS = [
     {"name": "Ankit", "rating": "5", "text": "Got my phone back in 2 hours 🔥"},
     {"name": "Neha", "rating": "4", "text": "Perfect for college campus"},
@@ -108,8 +109,10 @@ def report():
                 r["match"] = score
                 new["match"] = score
 
-        REPORTS.append(new)
-        return redirect(url_for("feed"))
+        REPORTS.clear()
+        REPORTS[:] = [new]
+    return redirect(url_for("feed"))
+
 
     return render_template("report.html")
 
