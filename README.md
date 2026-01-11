@@ -30,9 +30,17 @@ Lostify AI provides a centralized Lost & Found platform with live location suppo
 ## 🧠 AI & Future Scope
 Currently, Lostify AI uses a mock AI matching logic for the MVP. In the next phase, Google Gemini will be integrated to perform semantic similarity analysis between lost and found item descriptions for more accurate matching.
 
-
 ## 🧪 Tech Stack
 - Frontend: HTML, CSS, JavaScript
 - Backend: Python (Flask)
 - Database: SQLite
 - APIs: Google Map
+
+  ## 🌐 Live MVP
+[Click here to view Lostify AI](https://lostify-ai.onrender.com)
+
+
+## 📌 How to Run Locally
+1. Clone the repo  
+```bash
+git clone https://github.com/TANUSHKAUMESHMATHURKAR/lostify-ai.git
