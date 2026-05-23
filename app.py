@@ -2,16 +2,21 @@ import os
 from werkzeug.utils import secure_filename
 from flask import Flask, render_template, request, redirect, url_for, session
 
-# ---------- AI MATCH (Gemini-ready MOCK) ----------
+# ---------- AI MATCH (IMPROVED) ----------
 def ai_match_score(lost_desc, found_desc):
-    """
-    Gemini AI ready logic (mocked for hackathon MVP)
-    Future scope: Google Gemini API for semantic similarity
-    """
-    return "87%"
+    lost_words = set(lost_desc.lower().split())
+    found_words = set(found_desc.lower().split())
+
+    if not lost_words or not found_words:
+        return "0%"
+
+    common = lost_words & found_words
+    score = (len(common) / max(len(lost_words), 1)) * 100
+
+    return f"{min(100, round(score))}%"
 
 app = Flask(__name__)
-app.secret_key = "codestorm-secret"
+app.secret_key = os.environ.get("SECRET_KEY", "dev-secret-key")
 
 # ---------------- CONFIG ----------------
 UPLOAD_FOLDER = "static/uploads"
@@ -21,7 +26,6 @@ app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
 # ---------------- DATA ----------------
 USERS = {}
 REPORTS = []
-
 
 REVIEWS = [
     {"name": "Ankit", "rating": "5", "text": "Got my phone back in 2 hours 🔥"},
@@ -64,10 +68,9 @@ def home():
     if "user" not in session:
         return redirect(url_for("login"))
 
-    # Demo AI score (for judges explanation)
     match_score = ai_match_score(
-        "Black wallet with card",
-        "Black leather wallet near library"
+        "black wallet card",
+        "black leather wallet library"
     )
 
     return render_template(
@@ -90,17 +93,19 @@ def report():
         image = request.files.get("image")
         image_path = None
 
-        if image and image.filename != "":
+        if image and image.filename:
             filename = secure_filename(image.filename)
-            image_path = os.path.join(app.config["UPLOAD_FOLDER"], filename)
-            image.save(image_path)
+
+            if filename.lower().endswith((".png", ".jpg", ".jpeg", ".webp")):
+                image_path = os.path.join(app.config["UPLOAD_FOLDER"], filename)
+                image.save(image_path)
 
         new = {
             "item": item,
             "location": location,
-            "type": item_type,   # lost / found
+            "type": item_type,
             "image": image_path,
-            "match": "—"
+            "match": "Processing..."
         }
 
         for r in REPORTS:
@@ -109,10 +114,9 @@ def report():
                 r["match"] = score
                 new["match"] = score
 
-        REPORTS.clear()
-        REPORTS[:] = [new]
-    return redirect(url_for("feed"))
+        REPORTS.append(new)
 
+        return redirect(url_for("feed"))
 
     return render_template("report.html")
 
@@ -135,6 +139,5 @@ def add_review():
 
 # ---------------- RUN ----------------
 if __name__ == "__main__":
-    import os
     port = int(os.environ.get("PORT", 5000))
     app.run(host="0.0.0.0", port=port, debug=False)
